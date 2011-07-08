@@ -1,0 +1,7 @@
+This is a simple Scrabble like game I built to learn Django. 
+
+Idea was Twitter users would create games invite their friends (or play with strangers in public games) and the bot 
+would assign points to players based on unique words in the twitter
+messages using a Scrabble like scoring system.
+
+No longer live, do what you want with it.
