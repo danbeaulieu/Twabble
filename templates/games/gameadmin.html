@@ -1,0 +1,7 @@
+{% extends 'games/game.html' %}
+{% block gameadmin %} 
+
+
+<form action="{{ game.get_absolute_url }}" method="POST">
+                <input name="Button" type="submit" value="Delete Game" class="Button" onClick="return confirm('Are you sure you want to delete this game?');"/>
+            </form> {% endblock %}

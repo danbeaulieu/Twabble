@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load games_extras %}
+{% block pagetitle %}A Twitter Game{% endblock %}
+{% block title %}
+    {% if membership %} 
+        Name: {{ membership.gameid.name }} 
+    {% else %} 
+        Membership Not Found
+    {% endif %}
+{% endblock %}
+
+{% block primary %}
+
+{% if membership %}
+<div id="game">
+	
+	<br>
+	Member: <a href="/u/{{ membership.userid.id }}/{{ membership.userid.username }}/">{{ membership.userid.username }}</a>
+    <br>
+    Game: <a href="/g/{{membership.gameid.id }}/">{{ membership.gameid.name }}</a>
+    <br>
+    Points in Game: {{ membership.total_score }}
+	<br>
+    <br>
+    
+    Words Owned in this Game: 
+        {% for oship in oships %}
+            <span style="font-size: {{ oship.word.getSize }}px;"><a href="http://twitter.com/{{ oship.owner.username }}/status/{{ oship.messageid }}"> {{ oship.word.word }}</a></span>: {{ oship.word.score }}
+            {% if not forloop.last %} 
+            |
+            {% endif %}
+        {% endfor %}
+</div>
+{% else %}
+    <p>The user does not belong to the game.</p>
+{% endif %}
+{% endblock %}

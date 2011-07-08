@@ -1,0 +1,3 @@
+*.pyc
+*.*~
+cPickle.txt

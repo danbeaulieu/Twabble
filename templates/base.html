@@ -1,0 +1,51 @@
+{% load games_extras %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"> 
+		<title>Twabble - {%block pagetitle %}{% endblock %}</title>
+	</head>
+	<body>
+		<div id="container">
+			<div id="greeting">
+			{% if user.is_authenticated %}
+    Welcome, <a href="http://www.twitter.com/{{ user.username }}">{{ user.username }}</a>! Not {{ user.username }}? <a href="/logout/">Logout</a>.
+{% else %}
+    Sign In via <a href="/login/">Twitter</a>
+{% endif %}
+</div>
+			<div id="header"><a href="/"><h1>Twabble</h1></a></div>
+			<div id="nav">
+				<ul id="navul">
+                        <li><a href="/">Home</a></li>
+						<li><a href="/mygames/">My Games</a></li>
+						<li><a href="/startgame/">Start Game</a></li>
+						<li><a href="/search/">Search</a></li>
+                        <li><a href="/about/">About</a></li>
+				</ul>
+			</div>
+		
+		
+			<div id="content" >
+                
+				{% if not user.is_authenticated %}
+				<a class="auth" href="/login/"><div class="module">Sign In with your twitter account!</div>
+				</a>{% endif %}	<h1>{% block title %}{% endblock %}</h1>
+					{% block primary %}{% endblock %}
+                
+			</div>
+		</div>	
+			<div id="footer">Content is Copyrighted, Copywrited, and Copied.</div>
+		
+		
+	</body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8689258-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</html>

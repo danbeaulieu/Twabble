@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load games_extras %}
+{% block pagetitle %}A Twitter Game{% endblock %}
+{% block title %}Play Twabble Now!{% endblock %}
+
+{% block primary %}<div id="pitch"><p>
+Welcome to PlayTwabble.com. Twabble is a new game that is based on Twitter. All you need to play is a Twitter account, some friends and a vocabulary. Signin with your Twitter account and create a new game or join an existing one. Post updates as you normally would and Twabble will score your unique words for you. Head over to the <a href="/about/">about</a> page to learn more.</p>
+<a name="Play">Game Play</a>
+<p>The game begins once you've logged in to playtwabble.com with your Twitter account and you've created or joined an existing game. From there just use twitter as you normally would. The Twabble bot will analyze the words you use in your public twitter messages. If any of the words haven't been used by anyone in your game then you get the points for that word. If you want to gain the most points try to use unique words in your status updates. If they score high in Scrabble, they score high in Twabble. You don't need to do anything more on PlayTwabble.com, but come back to view your scores and how your opponents are doing.</p> </div>
+<div id="module_container">
+    {% if active_games %}
+    <div class="module">
+        <h1>Most Active Games</h1>
+        
+        {% for game in active_games %}
+            <a href="{{ game.get_absolute_url }}">{{ game.name }}</a>
+            <br>
+        {% endfor %}
+    </div>
+    <div class="module">
+        <h1>Newest Games</h1>
+        
+        {% for game in newest_games %}
+            <a href="{{ game.get_absolute_url }}">{{ game.name }}</a>
+            <br>
+        {% endfor %}
+    </div>
+
+    <div class="clearer">&nbsp;</div>
+    {% else %}
+        <p>No games available.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block pagetitle %}A Twitter Game{% endblock %}
+{% block title %}Start a game of Twabble{% endblock %}
+
+{% block primary %}
+<form action="/startgame/" method="POST">
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}

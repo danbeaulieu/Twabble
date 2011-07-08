@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load games_extras %}
+{% block pagetitle %}A Twitter Game{% endblock %}
+{% block title %}
+    {{ value }}
+    {% if game %} 
+        Name: {{ game.name }} 
+    {% else %} 
+        No Game Found
+    {% endif %}
+{% endblock %}
+
+{% block primary %}
+
+{% if game %}
+
+{% if not member %} 
+    {% if user.is_authenticated %}
+        {% if denied %}    
+            <span style="color:red;">This Game is only open to friends and followers of the game admin.</span>
+        {% else %}
+            <form action="{{ game.get_absolute_url }}" method="POST">
+                <input name="Button" type="submit" value="Join Game" class="Button"/>
+            </form>
+        {% endif %}
+    {% else %}
+    You must signin with your twitter account before you can join this game.
+				    </a>
+    {% endif %}
+{% else %}
+    {% ifnotequal user game.admin %}
+    <form action="{{ game.get_absolute_url }}" method="POST">
+                <input name="Button" type="submit" value="Leave Game" class="Button" onClick="return confirm('Are you sure you want to leave this game?');"/>
+            </form>
+    {% endifnotequal %}
+
+{% endif %}
+
+<div id="game">
+	{% block gameadmin %} {% endblock %}
+	<br>
+	Administrator: <a href="/u/{{ game.admin.id }}/{{ game.admin.username }}/">{{ game.admin }}</a>
+	<br>
+    Access: {{ game.get_access_display }} 
+    <br>
+	Start Date: {{ game.creation_date|date:"D d M Y f a" }}
+	<br>
+    <br>
+    Members: {% for m in memberships %}
+        {% if forloop.last %} 
+           <span style="font-size: {{ m.fontSize }}px;"><a href="{{ m.get_absolute_url }}"> {{ m.userid }}</a></span>: {{ m.total_score }} 
+        {% else %} 
+        <span style="font-size: {{ m.fontSize }}px;"><a href="{{ m.get_absolute_url }}"> {{ m.userid }}</a></span>: {{ m.total_score }} | 
+        {% endif %}
+    {% endfor %}
+	<br>
+    <br>
+    Words Used: {% for oship in wordsOwned %}
+        <span style="font-size: {{ oship.word.getSize }}px;"><a href="http://twitter.com/{{ oship.owner.username }}/status/{{ oship.messageid }}"> {{ oship.word.word }}</a></span>: {{ oship.word.score }}
+        {% if not forloop.last %} 
+        |
+        {% endif %}
+    {% endfor %}
+</div>
+{% else %}
+    <p>Specified game not found</p>
+{% endif %}
+{% endblock %}

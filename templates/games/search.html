@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block pagetitle %}A Twitter Game{% endblock %}
+{% block title %}Search for a game of Twabble{% endblock %}
+
+{% block primary %}
+{{ request.method }}
+<form action="/search/" method="POST">
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+{% if games %}
+
+<div id="game_list">
+    <ul>
+    {% for game in games %}
+        <li>Game Name: <a href="/g/{{ game.id }}">{{ game.name }}</a> Admin: <a href="/u/">{{ game.admin }}</a> Started On: {{ game.creation_date }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% else %}
+    {% if form.is_bound %}
+        No games found.
+    {% endif %}
+{% endif %}
+
+{% endblock %}

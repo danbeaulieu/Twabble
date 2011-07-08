@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load games_extras %}
+{% block pagetitle %}A Twitter Game{% endblock %}
+{% block title %}About Twabble{% endblock %}
+
+{% block primary %}
+<div id="about">
+    <ul>
+        <li><h1><a name="FAQ">Game FAQ</a>...or just skip to <a href="#Me">about Me.</a></h1>
+            <ul>
+                <li><b>How does it work?</b><p class="indented">Once you have signed in with your Twitter account, you should <a href="/startgame/">start</a> a new game of Twabble or join an existing one. The twitter user PlayTwabble will follow you. If you start a game you should invite your friends to play. When you post updates to your twitter stream, PlayTwabble will recieve them and analyze the words you have used. If you use a word that hasn't been used in the games you are in, you will "own" that word and get all the points for it.</p></li>
+                <li><b>Why does your Twitter application want write access?</b><p class="indented">Twitter specifies two types of access to the sign in with Twitter functionality, read or read and write. The application specifies write because when you create a new game of Twabble you have the <b>option</b> of automatically sending a tweet inviting your friends with a link to the game. It's just a convenience and is completely optional. Twabble will never send messages to your stream unless you let it.</p></li>
+                <li><b>When starting a game, what does Public mean?</b><p class="indented">You can create games which are Public, which means anyone with a twitter account can join. You may also start a game that only allows twitter users who you follow and who also follow you.  </p></li>
+                <li><b>How are words scored?</b><p class="indented">Words are scored by classic Scrabble word scores. The words that score high in Scrabble, will score high in Twabble.</p></li>
+                <li><b>Why hasn't my word been counted towards my score?</b><p class="indented">The algorithm is pretty dumb. It will only score words that are in the Twabble word list. It will only score words that don't have punctuation within them or around them. For example if your word ends in a comma, it won't be counted.</p></li>
+                <li><b>So I can just spam my feed and win?</b><p class="indented">Sure, but it will probably annoy your followers. There are no plans to do spam detection. It's just a game.</p></li>
+                <li><b>What sort of information is stored?</b><p class="indented">Not much. The information in your twitter profile is saved. If you "own" a word, the message id from which you used the word is stored. Everything is deleted once you leave your games.</p></li>
+            </ul>
+        </li>
+        <li><h1> <a name="Me">About Me</a></h1>
+            <p class = "indented">My name is Dan Beaulieu and I am the sole developer for Twabble. I built Twabble to learn Python and Django, neither of which I had any prior experience. I didn't build Twabble to display my web design skills. I have an interest in data mining and data aggregation on the web. More importantly I am currently looking for employment as a software engineer. I have 3 years of experience participating in the full SDLC of a web spider and data parsing system at a SaaS company. If you'd like to contact me with ideas or for my resume you can email me at danjacob.beaulieu AT gmail DOT com. </p>
+        </li>
+    </ul>
+</div>
+{% endblock %}
